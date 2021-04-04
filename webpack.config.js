@@ -27,6 +27,10 @@ module.exports = {
             name: '[name].[ext]'
           }
         },
+      },
+      {
+        test: /\.(frag|vert|glsl)$/,
+        use: 'raw-loader'
       }
     ]
   },
