@@ -43,9 +43,6 @@ gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
 gl.useProgram(program);
 
-// Bind the attribute/buffer set we want.
-gl.bindVertexArray(vao);
-
 gl.uniform2f(resolutionUniformLocation, gl.canvas.width, gl.canvas.height);
 
 
