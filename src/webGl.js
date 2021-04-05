@@ -36,7 +36,7 @@ export function createAndBindBuffer(gl, glBuffer) {
   return buffer;
 }
 
-export function createVertexArray(
+export function feedAttributeWithArrayBuffer(
   gl, 
   {
     attributeLocation,
@@ -49,6 +49,6 @@ export function createVertexArray(
   ) {
   const vertexArray = gl.createVertexArray();
   gl.bindVertexArray(vertexArray);
-  gl.enableVertexAttribArray(attributeLocation); // the data is 32bit floats      // start at the beginning of the buffer
+  gl.enableVertexAttribArray(attributeLocation); 
   gl.vertexAttribPointer(attributeLocation, size, type, normalize, stride, offset)
 }
