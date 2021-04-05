@@ -12,16 +12,17 @@ const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource
 const program = createProgram(gl, vertexShader, fragmentShader);
 
 const positionAttributeLocation = gl.getAttribLocation(program, "a_position");
+const resolutionUniformLocation = gl.getUniformLocation(program, "u_resolution");
 
 const positionBuffer = gl.createBuffer();
-
 gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-
-// three 2d points
 const positions = [
   0, 0,
-  0, 0.5,
-  0.7, 0,
+  400, 300,
+  0, 300,
+  200, 20,
+  200, 60,
+  100, 60,
 ];
 gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
 
@@ -38,11 +39,14 @@ gl.vertexAttribPointer(positionAttributeLocation, size, type, normalize, stride,
 gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
 // Clear the canvas
 gl.clearColor(0, 0, 0, 0);
-gl.clear(gl.COLOR_BUFFER_BIT);
+gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
 gl.useProgram(program);
 
 // Bind the attribute/buffer set we want.
 gl.bindVertexArray(vao);
 
-gl.drawArrays(gl.TRIANGLES, 0, 3);
+gl.uniform2f(resolutionUniformLocation, gl.canvas.width, gl.canvas.height);
+
+
+gl.drawArrays(gl.TRIANGLES, 0, 6);
